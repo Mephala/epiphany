@@ -215,10 +215,13 @@ ephy_add_bookmark_popover_show (EphyAddBookmarkPopover *self)
 
   self->bookmark = ephy_bookmarks_manager_get_bookmark_by_url (manager, address);
   if (!self->bookmark) {
+    char *id = ephy_sync_crypto_get_random_sync_id ();
     self->bookmark = ephy_bookmark_new (address,
                                         ephy_embed_get_title (embed),
-                                        g_sequence_new (g_free));
+                                        g_sequence_new (g_free),
+                                        id);
     self->is_new_bookmark = TRUE;
+    g_free (id);
   }
 
   g_signal_connect_object (manager, "bookmark-removed",
