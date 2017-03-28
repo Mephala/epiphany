@@ -396,6 +396,7 @@ bookmark_title_changed_cb (EphyBookmark         *bookmark,
                            GParamSpec           *pspec,
                            EphyBookmarksManager *self)
 {
+  ephy_bookmark_set_is_uploaded (bookmark, FALSE);
   g_signal_emit (self, signals[BOOKMARK_TITLE_CHANGED], 0, bookmark);
 }
 
@@ -404,6 +405,7 @@ bookmark_url_changed_cb (EphyBookmark         *bookmark,
                          GParamSpec           *pspec,
                          EphyBookmarksManager *self)
 {
+  ephy_bookmark_set_is_uploaded (bookmark, FALSE);
   g_signal_emit (self, signals[BOOKMARK_URL_CHANGED], 0, bookmark);
 }
 
@@ -412,6 +414,7 @@ bookmark_tag_added_cb (EphyBookmark         *bookmark,
                        const char           *tag,
                        EphyBookmarksManager *self)
 {
+  ephy_bookmark_set_is_uploaded (bookmark, FALSE);
   g_signal_emit (self, signals[BOOKMARK_TAG_ADDED], 0, bookmark, tag);
 }
 
@@ -420,6 +423,7 @@ bookmark_tag_removed_cb (EphyBookmark         *bookmark,
                          const char           *tag,
                          EphyBookmarksManager *self)
 {
+  ephy_bookmark_set_is_uploaded (bookmark, FALSE);
   g_signal_emit (self, signals[BOOKMARK_TAG_REMOVED], 0, bookmark, tag);
 }
 
